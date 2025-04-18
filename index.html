@@ -3,61 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gekkekayo 30 Jaar!</title>
+  <title>De Grote Gekkekayo Verrassing</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #fef9f4;
-      color: #333;
-      text-align: center;
+      background-color: #000;
+      color: #0f0;
+      font-family: monospace;
       padding: 50px;
+      text-align: center;
     }
-    h1 {
-      font-size: 3rem;
+    #puzzelContainer {
+      display: none;
+      margin-top: 30px;
     }
-    #countdown {
-      font-size: 2rem;
-      margin-top: 20px;
+    .glitch {
+      color: #f00;
+      animation: flicker 1s infinite;
     }
-    .hint {
-      margin-top: 40px;
-      font-style: italic;
-      color: #555;
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Gekkekayo wordt 30! 🎉</h1>
-  <p>De grote verrassing komt over:</p>
-  <div id="countdown"></div>
 
-  <div class="hint">P.S. Het heeft iets met water, bier... en misschien een vismarkt te maken. 🤫</div>
-  <img src="kayo30.jpg" alt="Gekke Kayo op avontuur" width="300">
+  <h1>🎁 Verrassing voor Gekkekayo 🎁</h1>
+  <p>Klik hieronder om je ultieme verjaardagspuzzel te onthullen...</p>
+  <button onclick="toonPuzzel()">Klik hier voor je puzzel</button>
+
+  <div id="puzzelContainer">
+    <h2>🧠 RARA... Waar gaan we heen?</h2>
+    <p>De bestemming is een stad. Maar welke? Los de puzzel op!</p>
+    <p><strong>Hint 1:</strong> Er zit een <span class="glitch">vis</span> in de markt...</p>
+    <p><strong>Hint 2:</strong> De Beatles begonnen hier ooit hun reis 🎸</p>
+    <p><strong>Hint 3:</strong> Zoek de verborgen code in de broncode...</p>
+
+    <input type="text" id="guess" placeholder="Typ hier je gok..." />
+    <button onclick="checkAnswer()">Check</button>
+
+    <p id="result"></p>
+
+    <!-- DE GEHEIME CODE -->
+    <!-- 
+      Clue 1: Het begint met een H...
+      Clue 2: De stad ligt aan de Elbe
+      Clue 3: 🇩🇪 Duitsland is de sleutel
+      Clue 4: Eerste letter H, laatste letter G
+      Clue 5: Hamb_ _ _
+    -->
+  </div>
 
   <script>
-    const targetDate = new Date("2025-04-20T10:00:00").getTime(); // pas dit aan
+    function toonPuzzel() {
+      document.getElementById("puzzelContainer").style.display = "block";
+    }
 
-    const countdownEl = document.getElementById("countdown");
-
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-
-      if (diff < 0) {
-        countdownEl.innerHTML = "🎁 Het is tijd! Pak je koffers!";
-        return;
+    function checkAnswer() {
+      const guess = document.getElementById("guess").value.toLowerCase().trim();
+      const result = document.getElementById("result");
+      if (guess === "hamburg") {
+        result.innerHTML = "🎉 YES! Pak je koffers, we gaan naar Hamburg! 🍺🐟🚢";
+        result.style.color = "#0f0";
+      } else {
+        result.innerHTML = "Nope... blijf raden! 🧩";
+        result.style.color = "#f00";
       }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      countdownEl.innerHTML = `${days} dagen, ${hours} uur, ${minutes} minuten, ${seconds} seconden`;
-    };
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+    }
   </script>
+
 </body>
 </html>
