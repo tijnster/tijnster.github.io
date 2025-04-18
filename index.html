@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gekkekayo 30 Jaar!</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fef9f4;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 3rem;
+    }
+    #countdown {
+      font-size: 2rem;
+      margin-top: 20px;
+    }
+    .hint {
+      margin-top: 40px;
+      font-style: italic;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gekkekayo wordt 30! 🎉</h1>
+  <p>De grote verrassing komt over:</p>
+  <div id="countdown"></div>
+
+  <div class="hint">P.S. Het heeft iets met water, bier... en misschien een vismarkt te maken. 🤫</div>
+
+  <script>
+    const targetDate = new Date("2025-04-20T10:00:00").getTime(); // pas dit aan
+
+    const countdownEl = document.getElementById("countdown");
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff < 0) {
+        countdownEl.innerHTML = "🎁 Het is tijd! Pak je koffers!";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      countdownEl.innerHTML = `${days} dagen, ${hours} uur, ${minutes} minuten, ${seconds} seconden`;
+    };
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
