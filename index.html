@@ -30,15 +30,25 @@
       font-size: 16px;
       margin-top: 10px;
     }
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin: 30px 0;
+    }
   </style>
 </head>
 <body>
   <h1>🎁 Verrassing voor Gekkekayo 🎁</h1>
   <img src="kayo30.jpg" alt="Gekke Kayo" class="kayo-img" width="300">
-  <button onclick="toonKado()">🎁 Verjaardagskado #1</button>
+
+  <div class="button-container">
+    <button onclick="toonKado()">🎁 Verjaardagskado #1</button>
+    <button onclick="toonPuzzel()">🧩 Klik hier voor je puzzel</button>
+  </div>
+
   <img id="kadoImage" src="kayo30v2.jpg" alt="Verjaardagskado" style="display: none; margin-top: 20px; max-width: 100%;">
-  <p>Klik hieronder om je ultieme verjaardagspuzzel te onthullen...</p>
-  <button onclick="toonPuzzel()">Klik hier voor je puzzel</button>
 
   <div id="puzzelContainer">
     <h2>🧠 Raad de bestemming</h2>
@@ -63,16 +73,11 @@
   </div>
 
   <script>
-
-
     function toonKado() {
-    var img = document.getElementById("kadoImage");
-    if (img.style.display === "none") {
-      img.style.display = "block";
-    } else {
-      img.style.display = "none";
+      var img = document.getElementById("kadoImage");
+      img.style.display = img.style.display === "none" ? "block" : "none";
     }
-  }
+
     function toonPuzzel() {
       document.getElementById("puzzelContainer").style.display = "block";
     }
