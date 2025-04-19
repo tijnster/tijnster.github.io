@@ -35,6 +35,8 @@
 <body>
   <h1>🎁 Verrassing voor Gekkekayo 🎁</h1>
   <img src="kayo30.jpg" alt="Gekke Kayo" class="kayo-img" width="300">
+  <button onclick="toonKado()">🎁 Verjaardagskado #1</button>
+  <img id="kadoImage" src="kayo30v2.jpg" alt="Verjaardagskado" style="display: none; margin-top: 20px; max-width: 100%;">
   <p>Klik hieronder om je ultieme verjaardagspuzzel te onthullen...</p>
   <button onclick="toonPuzzel()">Klik hier voor je puzzel</button>
 
@@ -61,6 +63,16 @@
   </div>
 
   <script>
+
+
+    function toonKado() {
+    var img = document.getElementById("kadoImage");
+    if (img.style.display === "none") {
+      img.style.display = "block";
+    } else {
+      img.style.display = "none";
+    }
+  }
     function toonPuzzel() {
       document.getElementById("puzzelContainer").style.display = "block";
     }
